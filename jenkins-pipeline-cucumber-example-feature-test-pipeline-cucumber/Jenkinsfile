@@ -1,33 +1,22 @@
 node('master'){
-
-   
-
-    stages {
        stage('Checkout'){
        checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/hemrajchouhan/JenkinsPipelineDemo.git']]])
-   }
+      }
   // stage('Compile-Package'){      
   //     def MVNHOME=tool name: 'MAVEN_HOME', type: 'maven'
   //   sh "${MVNHOME}/bin/mvn package"
   // }
    
- stage ('Build'){
+   stage ('Build'){
    def MVNHOME=tool name: 'MAVEN_HOME', type: 'maven'
         sh "${MVNHOME}/bin/mvn clean install"
    }
-
-
-        stage ('Cucumber Reports') {
-
+   stage ('Cucumber Reports') {
             steps {
                 cucumber buildStatus: "UNSTABLE",
                     fileIncludePattern: "**/cucumber.json",
                     jsonReportDirectory: 'target'
-
             }
-
         }
-
     }
-
 }
