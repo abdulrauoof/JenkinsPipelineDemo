@@ -18,5 +18,4 @@ node('master'){
                     jsonReportDirectory: 'target'
             }
         }
-    }
 }
