@@ -11,11 +11,5 @@ node('master'){
    def MVNHOME=tool name: 'MAVEN_HOME', type: 'maven'
         sh "${MVNHOME}/bin/mvn clean install"
    }
-   stage ('Cucumber Reports') {
-            steps {
-                cucumber buildStatus: "UNSTABLE",
-                    fileIncludePattern: "**/cucumber.json",
-                    jsonReportDirectory: 'target'
-            }
-        }
+  
 }
