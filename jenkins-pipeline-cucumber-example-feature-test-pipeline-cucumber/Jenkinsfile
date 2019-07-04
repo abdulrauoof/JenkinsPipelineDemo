@@ -8,8 +8,8 @@ node('master'){
   // }
    
    stage ('Build'){
-   def MVNHOME=tool name: 'MAVEN_HOME', type: 'maven'
-        sh "${MVNHOME}/bin/mvn clean install"
+        def MVNHOME=tool name: 'MAVEN_HOME', type: 'maven'
+        sh "${MVNHOME}/bin/mvn package"
    }
   
 }
